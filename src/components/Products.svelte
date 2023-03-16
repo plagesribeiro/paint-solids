@@ -7,7 +7,7 @@
 <a
 	href={product.metadata.URL}
 	target="_blank"
-	class="flex flex-col items-center justify-center w-fit h-fil p-4 gap-4 rounded-lg bg-gray-300 dark:bg-gray-600"
+	class="flex flex-col items-center justify-center w-[150px] h-fil p-4 gap-4 rounded-lg bg-gray-300 dark:bg-gray-600 text-center"
 >
 	<div class="max-w-[150px] max-h-[150px]">
 		<img

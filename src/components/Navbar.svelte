@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import DarkMode from './DarkMode.svelte';
 	import { goto } from '$app/navigation';
+	import logo from 'assets/logo_no_bg.png';
 </script>
 
 <div
@@ -19,9 +20,10 @@
 	<!-- Insert the logo with no background using the full height of this navbar -->
 	<img
 		alt=""
-		src="src/assets/logo_no_bg.png"
+		src={logo}
 		class="h-[70px] my-2 cursor-pointer"
 		on:click={() => goto('/')}
+		on:keydown
 	/>
 
 	<div class="flex h-full items-center mr-4">

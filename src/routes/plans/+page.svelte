@@ -8,8 +8,9 @@
 		faPuzzlePiece
 	} from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
-
 	export let selectedPlan = 'anual';
+	import { existingCollections, prices } from 'stores/collections';
+	import { collection } from 'firebase/firestore';
 
 	$: if (browser && !$page.url.searchParams.get('selectedPlan')) {
 		if ($page.url.searchParams.get('collectionId')) {
@@ -22,10 +23,36 @@
 			goto(`/plans?selectedPlan=anual`);
 		}
 	}
+
+	$: price = prices.find(
+		(price) => price.id === $page.url.searchParams.get('selectedPlan')
+	) ?? { id: '', price: 'R$ ????' };
+
+	$: priceStr = price.price + ' / mês';
+
+	$: selectedCollection =
+		existingCollections.find(
+			(collection) =>
+				collection.id === $page.url.searchParams.get('collectionId')
+		) ?? undefined;
+
+	$: checkoutLink = selectedCollection
+		? price
+			? price.id === 'anual'
+				? selectedCollection.stripeAnnualUrl
+				: price.id === 'semestral'
+				? selectedCollection.stripeSemiAnnualUrl
+				: price.id === 'trimestral'
+				? selectedCollection.stripeTriMonthlyUrl
+				: price.id === 'mensal'
+				? selectedCollection.stripeMonthlyUrl
+				: undefined
+			: undefined
+		: undefined;
 </script>
 
-<div class="w-full flex flex-col justify-center items-start p-4 gap-4">
-	<div class="dropdown w-full">
+<div class="w-full flex flex-col justify-center items-center p-4 gap-4 mb-20">
+	<div class="dropdown w-full max-w-xl">
 		<label tabindex="0" class="btn bg-base-300 m-1 w-full">
 			{#if $page.url.searchParams.get('collectionId') === 'arte'}
 				<Fa icon={faPuzzlePiece} size="1.5x" />
@@ -65,7 +92,7 @@
 		</ul>
 	</div>
 
-	<div class="w-full flex justify-between gap-2 flex-wrap">
+	<div class="w-full flex justify-between gap-2 flex-wrap max-w-xl">
 		<a
 			class="flex-1 text-center p-2 min-w-fit btn btn-accent btn-sm
 			{$page.url.searchParams.get('selectedPlan') === 'mensal'
@@ -114,4 +141,32 @@
 			Anual
 		</a>
 	</div>
+
+	<div
+		class=" rounded-xl overflow-hidden w-64 h-64 text-center flex items-center justify-center bg-base-100 shadow-xl"
+	>
+		{#if selectedCollection}
+			<figure><img src={selectedCollection.image} alt="image" /></figure>
+		{:else}
+			<p class="font-semibold text-lg">Selecione uma coleção</p>
+		{/if}
+	</div>
+
+	<h1 class="text-3xl font-bold text-center w-full max-w-xl truncate">
+		{priceStr}
+	</h1>
+
+	{#if checkoutLink}
+		<a
+			href={checkoutLink}
+			target="_blank"
+			class="btn btn-primary w-full max-w-[256px]"
+		>
+			Assinar
+		</a>
+	{:else}
+		<button disabled class="btn btn-disabled btn-primary max-w-[256px]">
+			Selecionar plano e coleção
+		</button>
+	{/if}
 </div>

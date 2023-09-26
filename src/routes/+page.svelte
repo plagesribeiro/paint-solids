@@ -1,31 +1,7 @@
 <script lang="ts">
 	import InitialCover from 'components/InitialCover.svelte';
 	import ProductBanner from 'components/ProductBanner.svelte';
-	import arte from 'assets/ARTE.png';
-	import geek from 'assets/GEEK.png';
-	import kids from 'assets/KIDS.png';
-	import { each } from 'svelte/internal';
-
-	const products = [
-		{
-			id: 'arte',
-			name: 'Arte',
-			description: 'Coleção Arte',
-			image: arte
-		},
-		{
-			id: 'geek',
-			name: 'Geek',
-			description: 'Coleção Geek',
-			image: geek
-		},
-		{
-			id: 'kids',
-			name: 'Kids',
-			description: 'Coleção Kids',
-			image: kids
-		}
-	];
+	import { existingCollections } from 'stores/collections';
 </script>
 
 <!-- image from static folder -->
@@ -40,7 +16,7 @@
 		<div
 			class="w-full flex items-center justify-evenly mt-8 flex-wrap gap-4 h-full pb-8"
 		>
-			{#each products as product}
+			{#each existingCollections as product}
 				<ProductBanner {product} />
 			{/each}
 		</div>

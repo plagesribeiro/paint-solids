@@ -11,6 +11,7 @@
 	export let selectedPlan = 'anual';
 	import { existingCollections, prices } from 'stores/collections';
 	import { collection } from 'firebase/firestore';
+	import { authentication } from 'stores/firebase';
 
 	$: if (browser && !$page.url.searchParams.get('selectedPlan')) {
 		if ($page.url.searchParams.get('collectionId')) {
@@ -156,7 +157,15 @@
 		{priceStr}
 	</h1>
 
-	{#if checkoutLink}
+	{#if !$authentication}
+		<a
+			href="/auth/login"
+			target="_blank"
+			class="btn btn-primary w-full max-w-[256px]"
+		>
+			Login
+		</a>
+	{:else if checkoutLink}
 		<a
 			href={checkoutLink}
 			target="_blank"

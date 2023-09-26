@@ -50,6 +50,8 @@
 				: undefined
 			: undefined
 		: undefined;
+
+	$: currentUrl = $page.url.pathname + $page.url.search;
 </script>
 
 <div class="w-full flex flex-col justify-center items-center p-4 gap-4 mb-20">
@@ -158,9 +160,15 @@
 	</h1>
 
 	{#if !$authentication}
-		<a href="/auth/login" class="btn btn-primary w-full max-w-[256px]">
-			Login
-		</a>
+		<button
+			on:click={() => {
+				localStorage.setItem('redirectTo', currentUrl);
+				goto('/auth/login');
+			}}
+			class="btn btn-primary w-full max-w-[256px]"
+		>
+			Continuar
+		</button>
 	{:else if checkoutLink}
 		<a
 			href={checkoutLink}

@@ -14,7 +14,7 @@
 			await sendPasswordResetEmail(getAuth(firebaseApp), emailValue);
 
 			success('Te enviamos um e-mail com os detalhes de redefinição');
-			await goto('/auth/login');
+			goto('/auth/login');
 		} catch (e: any) {
 			if (e.message.includes('user-not-found')) {
 				danger('E-mail não cadastrado');

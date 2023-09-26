@@ -7,6 +7,6 @@
 
 	onMount(async () => {
 		await signOut(getAuth(firebaseApp));
-		await goto('/auth/login');
+		goto('/auth/login');
 	});
 </script>

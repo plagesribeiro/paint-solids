@@ -24,7 +24,9 @@
 			await createUserWithEmailAndPassword(auth, emailValue, passwordValue);
 			success('Conta criada com sucesso');
 
-			await goto('/');
+			const redirectTo = localStorage.getItem('redirectTo') ?? '/';
+			localStorage.removeItem('redirectTo');
+			goto(redirectTo);
 		} catch (err: any) {
 			console.error(err);
 
@@ -47,7 +49,9 @@
 			await signInWithPopup(auth, googleProvider);
 			success('Conta criada com sucesso');
 
-			await goto('/');
+			const redirectTo = localStorage.getItem('redirectTo') ?? '/';
+			localStorage.removeItem('redirectTo');
+			goto(redirectTo);
 		} catch (err: any) {
 			console.error(err);
 			danger('Erro ao entrar com o Google');

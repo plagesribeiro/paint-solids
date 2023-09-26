@@ -37,7 +37,9 @@
 			await signInHandler(auth);
 			success('Login realizado com sucesso');
 
-			await goto('/');
+			const redirectTo = localStorage.getItem('redirectTo') ?? '/';
+			localStorage.removeItem('redirectTo');
+			goto(redirectTo);
 		} catch (err: any) {
 			if (err.code === 'auth/user-not-found') {
 				danger('E-mail não cadastrado');

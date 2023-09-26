@@ -158,11 +158,7 @@
 	</h1>
 
 	{#if !$authentication}
-		<a
-			href="/auth/login"
-			target="_blank"
-			class="btn btn-primary w-full max-w-[256px]"
-		>
+		<a href="/auth/login" class="btn btn-primary w-full max-w-[256px]">
 			Login
 		</a>
 	{:else if checkoutLink}

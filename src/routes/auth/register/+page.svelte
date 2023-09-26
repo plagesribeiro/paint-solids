@@ -1,9 +1,6 @@
 <script lang="ts">
 	import TextInput from 'components/TextInput.svelte';
-	import Button from 'components/Button.svelte';
 	import { danger, success } from 'components/Toast.svelte';
-	import LogoGoogle from 'assets/LogoGoogle.svelte';
-	import { Envelope, LockClosed } from 'svelte-hero-icons';
 	import { firebaseApp } from 'stores/firebase';
 	import {
 		getAuth,
@@ -13,6 +10,8 @@
 	} from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import Fa from 'svelte-fa';
+	import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 	let emailValue = $page.url.searchParams.get('email') || '';
 
@@ -67,55 +66,46 @@
 	<h1 class="font-bold text-2xl w-full">Registrar-se</h1>
 
 	<label for="email" class="flex flex-col gap-3 w-full mt-4">
-		<div class="font-semibold">Endereço de email</div>
 		<TextInput
+			label="Email"
 			placeholder="Digite seu email"
-			icon={Envelope}
 			bind:value={emailValue}
 			required
 		/>
 	</label>
 
 	<label for="email" class="flex flex-col gap-3 w-full">
-		<div class="font-semibold">Senha</div>
 		<TextInput
+			label="Senha"
 			type="password"
 			placeholder="************"
-			icon={LockClosed}
 			bind:value={passwordValue}
 			required
 		/>
 	</label>
 	<label for="email" class="flex flex-col gap-3 w-full mb-6">
-		<div class="font-semibold">Repita sua senha</div>
 		<TextInput
+			label="Confirme sua senha"
 			type="password"
 			placeholder="************"
-			icon={LockClosed}
 			bind:value={passwordConfirmationValue}
 			required
 		/>
 	</label>
 
-	<Button type="submit">Registrar</Button>
+	<button class="btn btn-primary w-full" type="submit">Registrar</button>
 
-	<Button on:click={registerWithGoogle} variants="google">
-		<LogoGoogle />
-		<span>Continuar com o Google</span>
-	</Button>
+	<button class="btn btn-info w-full" on:click={registerWithGoogle}>
+		<Fa icon={faGoogle} size={'1.5x'} />
+		Continuar com o Google
+	</button>
 
 	<footer class="flex flex-col items-center gap-4 mt-6 text-sm">
 		<a
 			href="/auth/login"
-			class="link text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+			class="underline hover:font-semibold cursor-pointer"
 		>
 			Voltar para a página de login
 		</a>
 	</footer>
 </form>
-
-<style lang="scss">
-	.link {
-		@apply underline hover:font-semibold cursor-pointer;
-	}
-</style>

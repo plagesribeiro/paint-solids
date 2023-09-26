@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Button from 'components/Button.svelte';
-	import DarkMode from 'components/DarkMode.svelte';
 	import TextInput from 'components/TextInput.svelte';
 	import { danger, success } from 'components/Toast.svelte';
 	import { doc, setDoc } from 'firebase/firestore';
@@ -76,7 +74,7 @@
 	>
 		<h1 class="text-2xl font-bold">Dados Pessoais</h1>
 		<div class="flex w-full justify-start items-center gap-3">
-			<span class="font-semibold ">Email:</span>
+			<span class="font-semibold">Email:</span>
 			<span>{email}</span>
 		</div>
 
@@ -95,29 +93,30 @@
 
 		<div class="mt-4 flex justify-center w-full gap-4 items-center">
 			{#if !editing}
-				<Button on:click={() => (editing = true)}>Editar</Button>
+				<button
+					class="btn btn-primary w-full"
+					on:click={() => (editing = true)}>Editar</button
+				>
 			{:else}
-				<Button on:click={() => calcel()}>Cancelar</Button>
-				<Button on:click={saveNewData}>Salvar</Button>
+				<div class="w-full flex gap-4">
+					<button class="btn btn-warning flex-1" on:click={() => calcel()}
+						>Cancelar</button
+					>
+					<button class="btn btn-success flex-1" on:click={saveNewData}
+						>Salvar</button
+					>
+				</div>
 			{/if}
 		</div>
 	</div>
 	<div
 		class="flex flex-col gap-4 max-w-lg w-full items-center justify-start h-full"
 	>
-		<h1 class="text-2xl font-bold">Ferramentas</h1>
-
-		<div
-			class="w-full bg-gray-300 dark:bg-gray-600 flex justify-evenly p-2 rounded-lg"
-		>
-			<DarkMode />
-		</div>
-		<div
-			class="w-full bg-gray-300 dark:bg-gray-600 flex justify-evenly p-2 rounded-lg"
-		>
-			<a href="/auth/logout" class="hover:font-bold hover:text-red-500"
-				>Logout</a
-			>
-		</div>
+		<h1 class="text-2xl font-bold">Minhas assinaturas:</h1>
+		{#if $userData && $userData.subscriptions}
+			{#each $userData?.subscriptions as subscription}
+				hey
+			{/each}
+		{/if}
 	</div>
 </div>

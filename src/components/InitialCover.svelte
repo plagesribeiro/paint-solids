@@ -1,7 +1,7 @@
-<div class="bg-image relative w-full h-[85vh]">
+<div class="bg-image flex w-full body">
 	<div class="h-full w-full flex flex-col justify-end">
 		<div
-			class="bg-gray-500 pb-4 pl-16 pt-4 flex flex-col gap-4 max-w-4xl rounded-tr-lg bg-opacity-60 text-gray-50"
+			class="bg-neutral pb-4 pl-16 pt-4 flex flex-col gap-4 max-w-4xl rounded-tr-lg bg-opacity-60 text-neutral-content"
 		>
 			<h1 class="font-bold text-4xl">A união entre a arte e a tecnologia</h1>
 			<h2 class="font-semi-bold text-sm">
@@ -11,7 +11,7 @@
 			</h2>
 			<a
 				class="underline tablet:mt-4 hover:font-semibold w-fit"
-				href="/products">Explorar todos os produtos</a
+				href="/plans">Explorar nossos planos</a
 			>
 		</div>
 	</div>
@@ -23,5 +23,9 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: bottom;
+	}
+
+	.body {
+		height: calc(100vh - 64px);
 	}
 </style>

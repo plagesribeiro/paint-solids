@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button from 'components/Button.svelte';
 	import TextInput from 'components/TextInput.svelte';
 	import { danger, success } from 'components/Toast.svelte';
 	import { firebaseApp } from 'stores/firebase';
@@ -39,36 +38,31 @@
 	<h1 class="font-bold text-2xl w-full">Esqueci minha senha</h1>
 
 	<label for="email" class="flex flex-col gap-3 w-full mt-4 mb-6">
-		<div class="font-semibold">Endereço de email</div>
 		<TextInput
+			label="Email"
 			placeholder="Digite seu email"
-			icon={Envelope}
 			bind:value={emailValue}
 			required
 		/>
 	</label>
 
-	<Button type="submit">Redefinir minha senha</Button>
+	<button class="btn btn-primary w-full" type="submit"
+		>Redefinir minha senha</button
+	>
 
 	<footer class="flex flex-col items-center gap-4 mt-6 text-sm">
 		<a
 			href="/auth/login"
-			class="link hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+			class="underline hover:font-semibold cursor-pointer"
 		>
 			Ir para a página de login
 		</a>
 
 		<a
 			href="/auth/register"
-			class="link hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+			class="underline hover:font-semibold cursor-pointer"
 		>
 			Não possui conta? Crie uma agora!
 		</a>
 	</footer>
 </form>
-
-<style lang="scss">
-	.link {
-		@apply underline hover:font-semibold cursor-pointer text-gray-500;
-	}
-</style>

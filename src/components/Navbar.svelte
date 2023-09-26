@@ -1,41 +1,74 @@
 <script lang="ts">
 	import { authentication } from 'stores/firebase';
 	import { page } from '$app/stores';
-	import DarkMode from './DarkMode.svelte';
 	import { goto } from '$app/navigation';
 	import logo from 'assets/logo_no_bg.png';
+	import { ArrowRightOnRectangle, Icon, User } from 'svelte-hero-icons';
+	import { userData } from 'stores/user';
 </script>
 
-<div
-	class="flex justify-between w-full border-b-[1px] bg-gray-800 text-gray-50 border-gray-600"
->
-	<div class="flex h-full items-center ml-4">
-		<a
-			href="/products"
-			class="p-2 hover:bg-gray-00 rounded-lg
-		{$page.url.pathname.startsWith('/products') ? 'bg-gray-900' : ''}">Loja</a
-		>
-	</div>
+<div class="navbar shadow-lg flex justify-between w-full bg-neutral h-full">
+	<div class="flex h-full items-center ml-4" />
 
-	<!-- Insert the logo with no background using the full height of this navbar -->
 	<img
 		alt=""
 		src={logo}
-		class="h-[70px] my-2 cursor-pointer"
+		class="h-12 my-2 cursor-pointer"
 		on:click={() => goto('/')}
 		on:keydown
 	/>
 
-	<div class="flex h-full items-center mr-4">
-		{#if !$authentication}
-			<a href="/auth/login" class="p-2 hover:bg-gray-900 rounded-lg">Login</a
+	<div class="dropdown dropdown-end">
+		<label tabindex="0" class="btn btn-ghost btn-circle avatar">
+			<div
+				class="w-10 rounded-full flex items-center justify-center bg-base-300 h-10"
 			>
-		{:else}
-			<a
-				href="/account"
-				class="p-2 hover:bg-gray-00 rounded-lg
-				{$page.url.pathname.startsWith('/account') ? 'bg-gray-900' : ''}">Conta</a
-			>
-		{/if}
+				<div
+					class="text-neutral-content h-full text-center flex items-center justify-center"
+				>
+					{#if !$authentication}
+						<Icon src={User} size={'24'} />
+					{:else}
+						<!--user google photo or initials-->
+						{#if !$userData || !$userData.name}
+							<Icon src={User} size={'24'} />
+						{:else if !$userData.photoUrl}
+							{$userData.name
+								.split(' ')
+								.map((name) => name[0])
+								.join('')}
+						{:else}
+							<img
+								alt="img"
+								src={$userData.photoUrl}
+								class="h-8 w-8 rounded-full"
+							/>
+						{/if}
+					{/if}
+				</div>
+			</div>
+		</label>
+
+		<ul
+			tabindex="0"
+			class="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52"
+		>
+			{#if !$authentication}
+				<li><a href="/auth/login">Entrar</a></li>
+			{:else}
+				<li>
+					<a href="/account">
+						<Icon src={User} size={'20'} />
+						Minha conta
+					</a>
+				</li>
+				<li>
+					<a href="/auth/logout" class="text-error hover:text-error">
+						<Icon src={ArrowRightOnRectangle} size={'20'} />
+						Sair
+					</a>
+				</li>
+			{/if}
+		</ul>
 	</div>
 </div>

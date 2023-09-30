@@ -186,35 +186,71 @@
 		</p>
 	</div>
 
-	{#if !$authentication}
-		<button
-			on:click={() => {
-				localStorage.setItem('redirectTo', currentUrl);
-				goto('/auth/login');
-			}}
-			class="btn btn-primary w-full max-w-[256px]"
-		>
-			Continuar
-		</button>
-	{:else if checkoutLink}
-		{#if !confirmedConditions}
-			<div
-				class="btn btn-disabled cursor-not-allowed btn-primary w-full max-w-[256px]"
-			>
-				Assinar
-			</div>
-		{:else}
-			<a
-				href={checkoutLink}
-				target="_blank"
-				class="btn btn-primary w-full max-w-[256px]"
-			>
-				Assinar
-			</a>
-		{/if}
-	{:else}
-		<button disabled class="btn btn-disabled btn-primary max-w-[256px]">
-			Selecionar plano e coleção
-		</button>
-	{/if}
+	<div class="flex gap-2">
+		<div>
+			<script
+				src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+				type="module"
+			></script>
+
+			<dotlottie-player
+				src="https://lottie.host/ae84923e-be63-47c0-86db-9daadfa0f563/jpVG83CPwj.json"
+				background="transparent"
+				speed="0.5"
+				style="width: 70px; height: 70px;"
+				loop
+				autoplay
+			/>
+		</div>
+
+		<div class="flex-1">
+			{#if !$authentication}
+				<button
+					on:click={() => {
+						localStorage.setItem('redirectTo', currentUrl);
+						goto('/auth/login');
+					}}
+					class="btn btn-primary w-full max-w-[256px]"
+				>
+					Continuar
+				</button>
+			{:else if checkoutLink}
+				{#if !confirmedConditions}
+					<div
+						class="btn btn-disabled cursor-not-allowed btn-primary w-full max-w-[256px]"
+					>
+						Assinar
+					</div>
+				{:else}
+					<a
+						href={checkoutLink}
+						target="_blank"
+						class="btn btn-primary w-full max-w-[256px]"
+					>
+						Assinar
+					</a>
+				{/if}
+			{:else}
+				<button disabled class="btn btn-disabled btn-primary max-w-[256px]">
+					Selecionar plano e coleção
+				</button>
+			{/if}
+		</div>
+
+		<div>
+			<script
+				src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+				type="module"
+			></script>
+
+			<dotlottie-player
+				src="https://lottie.host/ae84923e-be63-47c0-86db-9daadfa0f563/jpVG83CPwj.json"
+				background="transparent"
+				speed="0.5"
+				style="width: 70px; height: 70px;"
+				loop
+				autoplay
+			/>
+		</div>
+	</div>
 </div>

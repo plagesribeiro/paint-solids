@@ -7,7 +7,19 @@
 </script>
 
 <div class="w-full flex flex-col items-center justify-center gap-6 p-8">
-	<Fa icon={faCheckCircle} size={'8x'} class="text-success" />
+	<script
+		src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+		type="module"
+	></script>
+
+	<dotlottie-player
+		src="https://lottie.host/3f6af863-1b4b-4640-98a2-e63016c9f65a/keyjnHdp1L.json"
+		background="transparent"
+		speed="1"
+		class="w-full max-w-[10rem]"
+		loop
+		autoplay
+	/>
 
 	<div
 		class=" flex flex-col gap-1 items-center justify-centertext-center max-w-sm font-bold"

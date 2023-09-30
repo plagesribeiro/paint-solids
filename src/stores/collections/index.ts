@@ -8,55 +8,70 @@ export const existingCollections = [
 		name: 'Geek',
 		description: 'Coleção Geek',
 		image: geek,
-		stripeMonthlyUrl: 'https://clkdmg.site/subscribe/geek-mensal',
-		stripeTriMonthlyUrl: 'https://clkdmg.site/subscribe/geek-trimestral',
-		stripeSemiAnnualUrl: 'https://clkdmg.site/subscribe/geek-semestral',
-		stripeAnnualUrl: 'https://clkdmg.site/subscribe/geek-anual'
+		stripeMonthlyUrl: 'https://guru.paintsolids.com.br/subscribe/geek-1-mes',
+		stripeTriMonthlyUrl:
+			'https://guru.paintsolids.com.br/subscribe/geek-3-meses',
+		stripeSemiAnnualUrl:
+			'https://guru.paintsolids.com.br/subscribe/geek-6-meses',
+		stripeAnnualUrl: 'https://guru.paintsolids.com.br/subscribe/geek-anual'
 	},
 	{
 		id: 'kids',
 		name: 'Kids',
 		description: 'Coleção Kids',
 		image: kids,
-		stripeMonthlyUrl: 'https://clkdmg.site/subscribe/kids-mensal',
-		stripeTriMonthlyUrl: 'https://clkdmg.site/subscribe/kids-trimestral',
-		stripeSemiAnnualUrl: 'https://clkdmg.site/subscribe/kids-semestral',
-		stripeAnnualUrl: 'https://clkdmg.site/subscribe/kids-anual'
+		stripeMonthlyUrl: 'https://guru.paintsolids.com.br/subscribe/kids-1-mes',
+		stripeTriMonthlyUrl:
+			'https://guru.paintsolids.com.br/subscribe/kids-3-meses',
+		stripeSemiAnnualUrl:
+			'https://guru.paintsolids.com.br/subscribe/kids-6-meses',
+		stripeAnnualUrl: 'https://guru.paintsolids.com.br/subscribe/kids-anual'
 	},
 	{
 		id: 'arte',
 		name: 'Arte',
 		description: 'Coleção Arte',
 		image: arte,
-		stripeMonthlyUrl: 'https://clkdmg.site/subscribe/arte-mensal',
-		stripeTriMonthlyUrl: 'https://clkdmg.site/subscribe/arte-trimestral',
-		stripeSemiAnnualUrl: 'https://clkdmg.site/subscribe/arte-semestral',
-		stripeAnnualUrl: 'https://clkdmg.site/subscribe/arte-anual'
+		stripeMonthlyUrl: 'https://guru.paintsolids.com.br/subscribe/arte-1-mes',
+		stripeTriMonthlyUrl:
+			'https://guru.paintsolids.com.br/subscribe/arte-3-meses',
+		stripeSemiAnnualUrl:
+			'https://guru.paintsolids.com.br/subscribe/arte-6-meses',
+		stripeAnnualUrl: 'https://guru.paintsolids.com.br/subscribe/arte-anual'
 	}
 ] as Collection[];
 
 export const prices = [
 	{
 		id: 'anual',
-		price: 'R$ 89,99'
+		price: 'R$ 89,90',
+		description:
+			'Plano anual com +-20% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
 	},
 	{
 		id: 'semestral',
-		price: 'R$ 94,99'
+		price: 'R$ 94,90',
+		description:
+			'Plano semestral com +-15% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
 	},
 	{
 		id: 'trimestral',
-		price: 'R$ 99,99'
+		price: 'R$ 99,90',
+		description:
+			'Plano trimestral com +-10% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
 	},
 	{
 		id: 'mensal',
-		price: 'R$ 109,99'
+		price: 'R$ 109,90',
+		description:
+			'Plano mensal. Esse plano não conta com Kit de Pintura de brinde. Os primeiros 20 assinantes receberão um Kit de Pintura de brinde.'
 	}
 ] as Price[];
 
 export type Price = {
 	id: string;
 	price: string;
+	description?: string;
 };
 
 export type Collection = {

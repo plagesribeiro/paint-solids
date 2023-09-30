@@ -27,9 +27,7 @@
 	"dependencies": {
 		"@fortawesome/free-brands-svg-icons": "^6.4.2",
 		"@fortawesome/free-solid-svg-icons": "^6.4.2",
-		"cep-promise": "^4.4.0",
 		"firebase": "^9.17.2",
-		"stripe": "^11.14.0",
 		"svelte-easy-popover": "^1.0.0",
 		"svelte-fa": "^3.0.4",
 		"svelte-hero-icons": "^5.0.0"

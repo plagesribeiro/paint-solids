@@ -10,7 +10,6 @@
 	import Fa from 'svelte-fa';
 	export let selectedPlan = 'anual';
 	import { existingCollections, prices } from 'stores/collections';
-	import { collection } from 'firebase/firestore';
 	import { authentication } from 'stores/firebase';
 
 	$: if (browser && !$page.url.searchParams.get('selectedPlan')) {
@@ -52,6 +51,8 @@
 		: undefined;
 
 	$: currentUrl = $page.url.pathname + $page.url.search;
+
+	let confirmedConditions = false;
 </script>
 
 <div class="w-full flex flex-col justify-center items-center p-4 gap-4 mb-20">
@@ -159,6 +160,32 @@
 		{priceStr}
 	</h1>
 
+	{#if price?.description}
+		<p class="max-w-sm text-center">
+			{price?.description}
+		</p>
+	{/if}
+
+	<div
+		class="flex items-center gap-2 text-sm p-2 border border-base-200 rounded-lg"
+	>
+		<input
+			class="checkbox checkbox-sm"
+			type="checkbox"
+			bind:checked={confirmedConditions}
+		/>
+
+		<p class="max-w-sm">
+			Entendo que o item que estou comprando é uma assinatura. Ao continuar,
+			concordo com a
+			<a
+				class="underline text-info"
+				href="https://paintsolids.notion.site/Pol-tica-de-Cancelamento-da37825c62c24b67ae9381b645d0ae43?pvs=4"
+				target="_blank">Política de cancelamento</a
+			>.
+		</p>
+	</div>
+
 	{#if !$authentication}
 		<button
 			on:click={() => {
@@ -170,13 +197,21 @@
 			Continuar
 		</button>
 	{:else if checkoutLink}
-		<a
-			href={checkoutLink}
-			target="_blank"
-			class="btn btn-primary w-full max-w-[256px]"
-		>
-			Assinar
-		</a>
+		{#if !confirmedConditions}
+			<div
+				class="btn btn-disabled cursor-not-allowed btn-primary w-full max-w-[256px]"
+			>
+				Assinar
+			</div>
+		{:else}
+			<a
+				href={checkoutLink}
+				target="_blank"
+				class="btn btn-primary w-full max-w-[256px]"
+			>
+				Assinar
+			</a>
+		{/if}
 	{:else}
 		<button disabled class="btn btn-disabled btn-primary max-w-[256px]">
 			Selecionar plano e coleção

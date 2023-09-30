@@ -115,11 +115,9 @@
 </script>
 
 <div
-	class="w-full h-full flex justify-start items-center p-16 tablet:flex-col gap-6 overflow-auto"
+	class="w-full flex justify-center items-start tablet:items-center tablet:p-4 p-16 tablet:flex-col gap-6"
 >
-	<div
-		class="flex flex-col gap-4 max-w-lg w-full h-full justify-start items-center"
-	>
+	<div class="flex flex-col gap-4 max-w-lg w-full justify-start items-center">
 		<h1 class="text-2xl font-bold w-full text-start">Dados Pessoais:</h1>
 		{#if !browser || !$userData.email}
 			<div class="w-full mt-4 flex justify-center">
@@ -165,7 +163,7 @@
 		{/if}
 	</div>
 	<div
-		class="flex flex-col gap-4 max-w-lg w-full items-center justify-start h-full"
+		class="flex flex-col gap-4 max-w-lg w-full items-start justify-start h-full"
 	>
 		<h1 class="text-2xl font-bold w-full text-start">Minhas assinaturas:</h1>
 		{#if loadingSubs}

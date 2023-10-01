@@ -17,7 +17,6 @@
 		background="transparent"
 		speed="1"
 		class="w-full max-w-[10rem]"
-		loop
 		autoplay
 	/>
 

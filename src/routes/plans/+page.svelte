@@ -198,7 +198,6 @@
 				background="transparent"
 				speed="0.5"
 				style="width: 70px; height: 70px;"
-				loop
 				autoplay
 			/>
 		</div>
@@ -248,7 +247,6 @@
 				background="transparent"
 				speed="0.5"
 				style="width: 70px; height: 70px;"
-				loop
 				autoplay
 			/>
 		</div>

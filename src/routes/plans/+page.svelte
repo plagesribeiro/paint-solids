@@ -22,8 +22,7 @@
 			collectionId: $page.url.searchParams.get('collectionId')
 		});
 
-		// rolar a tela para cima
-		window.scrollTo(0, 0);
+		document.body.scrollIntoView();
 	});
 
 	$: if (browser && !$page.url.searchParams.get('selectedPlan')) {

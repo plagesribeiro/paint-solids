@@ -46,19 +46,19 @@ export const prices = [
 		id: 'anual',
 		price: 'R$ 89,90',
 		description:
-			'Plano anual com +-20% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
+			'Plano anual com 20% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
 	},
 	{
 		id: 'semestral',
 		price: 'R$ 94,90',
 		description:
-			'Plano semestral com +-15% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
+			'Plano semestral com 15% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
 	},
 	{
 		id: 'trimestral',
 		price: 'R$ 99,90',
 		description:
-			'Plano trimestral com +-10% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
+			'Plano trimestral com 10% de desconto. Esse plano conta com 1 Kit de Pintura de brinde que será entregue no primeiro mês.'
 	},
 	{
 		id: 'mensal',

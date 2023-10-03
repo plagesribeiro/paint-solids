@@ -203,7 +203,7 @@
 		</div>
 
 		<div class="flex-1">
-			{#if !$authentication}
+			<!-- {#if !$authentication}
 				<button
 					on:click={() => {
 						localStorage.setItem('redirectTo', currentUrl);
@@ -212,8 +212,8 @@
 					class="btn btn-primary w-full max-w-[256px]"
 				>
 					Continuar
-				</button>
-			{:else if checkoutLink}
+				</button> -->
+			{#if checkoutLink}
 				{#if !confirmedConditions}
 					<div
 						class="btn btn-disabled cursor-not-allowed btn-primary w-full max-w-[256px]"

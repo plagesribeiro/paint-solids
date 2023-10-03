@@ -21,6 +21,9 @@
 			selectedPlan: $page.url.searchParams.get('selectedPlan'),
 			collectionId: $page.url.searchParams.get('collectionId')
 		});
+
+		// rolar a tela para cima
+		window.scrollTo(0, 0);
 	});
 
 	$: if (browser && !$page.url.searchParams.get('selectedPlan')) {
@@ -87,19 +90,43 @@
 			class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
 		>
 			<li>
-				<a href="/plans?collectionId=arte">
+				<a
+					href="/plans?collectionId=arte"
+					on:click={() => {
+						mixpanel.track('SelectCollection', {
+							user: $userData.email ?? 'anonymous',
+							collectionId: 'arte'
+						});
+					}}
+				>
 					<Fa icon={faPuzzlePiece} size="1.5x" />
 					Arte
 				</a>
 			</li>
 			<li>
-				<a href="/plans?collectionId=geek">
+				<a
+					href="/plans?collectionId=geek"
+					on:click={() => {
+						mixpanel.track('SelectCollection', {
+							user: $userData.email ?? 'anonymous',
+							collectionId: 'geek'
+						});
+					}}
+				>
 					<Fa icon={faGamepad} size="1.3x" />
 					Geek
 				</a>
 			</li>
 			<li>
-				<a href="/plans?collectionId=kids">
+				<a
+					href="/plans?collectionId=kids"
+					on:click={() => {
+						mixpanel.track('SelectCollection', {
+							user: $userData.email ?? 'anonymous',
+							collectionId: 'kids'
+						});
+					}}
+				>
 					<Fa icon={faPalette} size="1.5x" />
 					Kids
 				</a>
@@ -116,6 +143,12 @@
 			href="/plans?collectionId={$page.url.searchParams.get(
 				'collectionId'
 			)}&selectedPlan=mensal"
+			on:click={() => {
+				mixpanel.track('SelectPlan', {
+					user: $userData.email ?? 'anonymous',
+					selectedPlan: 'mensal'
+				});
+			}}
 		>
 			Mensal
 		</a>
@@ -128,6 +161,12 @@
 			href="/plans?collectionId={$page.url.searchParams.get(
 				'collectionId'
 			)}&selectedPlan=trimestral"
+			on:click={() => {
+				mixpanel.track('SelectPlan', {
+					user: $userData.email ?? 'anonymous',
+					selectedPlan: 'trimestral'
+				});
+			}}
 		>
 			Trimestral
 		</a>
@@ -140,6 +179,12 @@
 			href="/plans?collectionId={$page.url.searchParams.get(
 				'collectionId'
 			)}&selectedPlan=semestral"
+			on:click={() => {
+				mixpanel.track('SelectPlan', {
+					user: $userData.email ?? 'anonymous',
+					selectedPlan: 'semestral'
+				});
+			}}
 		>
 			Semestral
 		</a>
@@ -152,6 +197,12 @@
 			href="/plans?collectionId={$page.url.searchParams.get(
 				'collectionId'
 			)}&selectedPlan=anual"
+			on:click={() => {
+				mixpanel.track('SelectPlan', {
+					user: $userData.email ?? 'anonymous',
+					selectedPlan: 'anual'
+				});
+			}}
 		>
 			Anual
 		</a>
@@ -232,17 +283,19 @@
 				</button> -->
 			{#if checkoutLink}
 				{#if !confirmedConditions}
-					<div
-						class="btn btn-disabled cursor-not-allowed btn-primary w-full max-w-[256px]"
+					<button
+						class="btn cursor-not-allowed btn-primary w-full max-w-[256px]"
 						on:click={() => {
 							mixpanel.track('ClickBuyWithoutTerms', {
 								user: $userData.email ?? 'anonymous',
 								checked: confirmedConditions
 							});
+
+							alert('Você precisa aceitar os termos e condições.');
 						}}
 					>
 						Assinar
-					</div>
+					</button>
 				{:else}
 					<a
 						href={checkoutLink}

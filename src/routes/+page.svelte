@@ -2,6 +2,15 @@
 	import InitialCover from 'components/InitialCover.svelte';
 	import ProductBanner from 'components/ProductBanner.svelte';
 	import { existingCollections } from 'stores/collections';
+	import mixpanel from 'mixpanel-browser';
+	import { onMount } from 'svelte';
+	import { userData } from 'stores/user';
+
+	onMount(() => {
+		mixpanel.track('HomePage', {
+			user: $userData.email ?? 'anonymous'
+		});
+	});
 </script>
 
 <!-- image from static folder -->

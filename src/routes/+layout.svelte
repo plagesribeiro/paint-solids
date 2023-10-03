@@ -6,6 +6,9 @@
 	import { userDoc } from 'stores/user';
 	import { onMount } from 'svelte';
 	import Footer from 'components/Footer.svelte';
+	import mixpanel from 'mixpanel-browser';
+
+	mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, { debug: true });
 
 	let corpoContent = 'Conteúdo do corpo';
 	let footerContent = 'Conteúdo do rodapé';

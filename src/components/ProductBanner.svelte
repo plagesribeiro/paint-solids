@@ -2,6 +2,16 @@
 	import type { Collection } from 'stores/collections';
 	import { Icon, ShoppingBag } from 'svelte-hero-icons';
 
+	import mixpanel from 'mixpanel-browser';
+	import { onMount } from 'svelte';
+	import { userData } from 'stores/user';
+
+	onMount(() => {
+		mixpanel.track('HomePage', {
+			user: $userData.email ?? 'anonymous'
+		});
+	});
+
 	export let product: Collection;
 </script>
 
@@ -13,6 +23,13 @@
 			<a
 				class="btn btn-primary w-full flex"
 				href="/plans?collectionId={product.id}"
+				on:click={() => {
+					mixpanel.track('CollectionClick', {
+						user: $userData.email ?? 'anonymous',
+						collectionId: product.id,
+						collectionName: product.name
+					});
+				}}
 			>
 				Eu quero!
 				<Icon src={ShoppingBag} size={'22'} />

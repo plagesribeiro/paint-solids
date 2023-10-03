@@ -1,3 +1,8 @@
+<script lang="ts">
+	import mixpanel from 'mixpanel-browser';
+	import { userData } from 'stores/user';
+</script>
+
 <div class="bg-image flex w-full body">
 	<div class="h-full w-full flex flex-col justify-end">
 		<div
@@ -11,7 +16,12 @@
 			</h2>
 			<a
 				class="underline tablet:mt-4 hover:font-semibold w-fit"
-				href="/plans">Explorar nossos planos</a
+				href="/plans"
+				on:click={() => {
+					mixpanel.track('ExplorePlans', {
+						user: $userData.email ?? 'anonymous'
+					});
+				}}>Explorar nossos planos</a
 			>
 		</div>
 	</div>

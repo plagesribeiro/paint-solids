@@ -11,6 +11,17 @@
 	export let selectedPlan = 'anual';
 	import { existingCollections, prices } from 'stores/collections';
 	import { authentication } from 'stores/firebase';
+	import { onMount } from 'svelte';
+	import mixpanel from 'mixpanel-browser';
+	import { userData } from 'stores/user';
+
+	onMount(() => {
+		mixpanel.track('PlansPage', {
+			user: $userData.email ?? 'anonymous',
+			selectedPlan: $page.url.searchParams.get('selectedPlan'),
+			collectionId: $page.url.searchParams.get('collectionId')
+		});
+	});
 
 	$: if (browser && !$page.url.searchParams.get('selectedPlan')) {
 		if ($page.url.searchParams.get('collectionId')) {
@@ -173,6 +184,12 @@
 			class="checkbox checkbox-sm"
 			type="checkbox"
 			bind:checked={confirmedConditions}
+			on:change={() => {
+				mixpanel.track('TermsAndConditions', {
+					user: $userData.email ?? 'anonymous',
+					checked: confirmedConditions
+				});
+			}}
 		/>
 
 		<p class="max-w-sm">
@@ -217,6 +234,12 @@
 				{#if !confirmedConditions}
 					<div
 						class="btn btn-disabled cursor-not-allowed btn-primary w-full max-w-[256px]"
+						on:click={() => {
+							mixpanel.track('ClickBuyWithoutTerms', {
+								user: $userData.email ?? 'anonymous',
+								checked: confirmedConditions
+							});
+						}}
 					>
 						Assinar
 					</div>
@@ -225,6 +248,12 @@
 						href={checkoutLink}
 						target="_blank"
 						class="btn btn-primary w-full max-w-[256px]"
+						on:click={() => {
+							mixpanel.track('ClickBuy', {
+								user: $userData.email ?? 'anonymous',
+								checked: confirmedConditions
+							});
+						}}
 					>
 						Assinar
 					</a>

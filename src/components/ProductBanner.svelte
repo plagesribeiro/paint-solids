@@ -16,7 +16,7 @@
 </script>
 
 <div class="card w-64 bg-base-100 h-64 shadow-xl image-full">
-	<figure><img src={product.image} alt="image" /></figure>
+	<figure><img src={product.image} alt="productImg" /></figure>
 	<div class="card-body justify-between gap-0">
 		<h2 class="card-title !mb-0">{product.name}</h2>
 		<div class="card-actions justify-end w=full">

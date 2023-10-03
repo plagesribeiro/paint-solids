@@ -8,12 +8,12 @@
 		faPuzzlePiece
 	} from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
-	export let selectedPlan = 'anual';
 	import { existingCollections, prices } from 'stores/collections';
-	import { authentication } from 'stores/firebase';
 	import { onMount } from 'svelte';
 	import mixpanel from 'mixpanel-browser';
 	import { userData } from 'stores/user';
+
+	let elementt: HTMLDivElement;
 
 	onMount(() => {
 		mixpanel.track('PlansPage', {
@@ -22,7 +22,7 @@
 			collectionId: $page.url.searchParams.get('collectionId')
 		});
 
-		document.body.scrollIntoView();
+		elementt.scrollIntoView();
 	});
 
 	$: if (browser && !$page.url.searchParams.get('selectedPlan')) {
@@ -63,13 +63,18 @@
 			: undefined
 		: undefined;
 
-	$: currentUrl = $page.url.pathname + $page.url.search;
+	// $: currentUrl = $page.url.pathname + $page.url.search;
 
 	let confirmedConditions = false;
 </script>
 
-<div class="w-full flex flex-col justify-center items-center p-4 gap-4 mb-20">
+<div
+	class="w-full flex flex-col justify-center items-center p-4 gap-4 mb-20"
+	bind:this={elementt}
+>
 	<div class="dropdown w-full max-w-xl">
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label tabindex="0" class="btn bg-base-300 m-1 w-full">
 			{#if $page.url.searchParams.get('collectionId') === 'arte'}
 				<Fa icon={faPuzzlePiece} size="1.5x" />
@@ -84,6 +89,8 @@
 				Selecione uma coleção
 			{/if}
 		</label>
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<ul
 			tabindex="0"
 			class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
@@ -211,7 +218,9 @@
 		class=" rounded-xl overflow-hidden w-64 h-64 text-center flex items-center justify-center bg-base-100 shadow-xl"
 	>
 		{#if selectedCollection}
-			<figure><img src={selectedCollection.image} alt="image" /></figure>
+			<figure>
+				<img src={selectedCollection.image} alt="collectionImg" />
+			</figure>
 		{:else}
 			<p class="font-semibold text-lg">Selecione uma coleção</p>
 		{/if}
@@ -248,8 +257,12 @@
 			<a
 				class="underline text-info"
 				href="https://paintsolids.notion.site/Pol-tica-de-Cancelamento-da37825c62c24b67ae9381b645d0ae43?pvs=4"
-				target="_blank">Política de cancelamento</a
-			>.
+				target="_blank"
+				rel="noreferrer"
+			>
+				Política de cancelamento
+			</a>
+			.
 		</p>
 	</div>
 
@@ -299,6 +312,7 @@
 					<a
 						href={checkoutLink}
 						target="_blank"
+						rel="noreferrer"
 						class="btn btn-primary w-full max-w-[256px]"
 						on:click={() => {
 							mixpanel.track('ClickBuy', {

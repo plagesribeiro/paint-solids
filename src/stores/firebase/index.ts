@@ -1,13 +1,8 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import {
-	DocumentSnapshot,
-	getFirestore,
-	type DocumentData
-} from 'firebase/firestore';
-import { readable, writable } from 'svelte/store';
+import { getFirestore } from 'firebase/firestore';
+import { readable } from 'svelte/store';
 import { browser } from '$app/environment';
-import { getDoc, doc, setDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_APIKEY,

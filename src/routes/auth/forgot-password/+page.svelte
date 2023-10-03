@@ -3,7 +3,6 @@
 	import { danger, success } from 'components/Toast.svelte';
 	import { firebaseApp } from 'stores/firebase';
 	import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
-	import { Envelope } from 'svelte-hero-icons';
 	import { goto } from '$app/navigation';
 
 	let emailValue: string;

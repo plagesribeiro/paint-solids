@@ -19,6 +19,8 @@
 	/>
 
 	<div class="dropdown dropdown-end">
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label tabindex="0" class="btn btn-ghost btn-circle avatar">
 			<div
 				class="w-10 rounded-full flex items-center justify-center bg-base-300 h-10"
@@ -49,6 +51,8 @@
 			</div>
 		</label>
 
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<ul
 			tabindex="0"
 			class="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52"

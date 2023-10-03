@@ -12,6 +12,7 @@
 		<a
 			href="https://paintsolids.notion.site/Sobre-n-s-18fce53f560f4898aae42b3601d82331?pvs=4"
 			target="_blank"
+			rel="noreferrer"
 			class="link link-hover">Sobre nós</a
 		>
 		<button
@@ -28,23 +29,30 @@
 		<a
 			href="https://paintsolids.notion.site/Pol-tica-de-Reembolso-39bed47f154d4215a2655691a6866f3e?pvs=4"
 			target="_blank"
+			rel="noreferrer"
 			class="link link-hover">Política de reembolso</a
 		>
 		<a
 			href="https://paintsolids.notion.site/Pol-tica-de-Privacidade-4746f6d6ff864b119a3420a231e39bdc?pvs=4"
 			target="_blank"
+			rel="noreferrer"
 			class="link link-hover">Política de privacidade</a
 		>
 		<a
 			href="https://paintsolids.notion.site/Termos-de-Servi-o-8e66569aeb2f4430b5d4f9a801a26e06?pvs=4"
 			target="_blank"
+			rel="noreferrer"
 			class="link link-hover">Termos de Serviço</a
 		>
 	</nav>
 
 	<nav>
 		<div class="flex items-center gap-4">
-			<a href="https://www.instagram.com/paintsolids/" target="_blank">
+			<a
+				href="https://www.instagram.com/paintsolids/"
+				target="_blank"
+				rel="noreferrer"
+			>
 				<Fa icon={faInstagram} class="text-neutral-content" size={'2.3x'} />
 			</a>
 			<!-- <a href="www.google.com" target="_blank">

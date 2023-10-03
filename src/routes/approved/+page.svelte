@@ -34,7 +34,7 @@
 		alt="gif"
 	/>
 
-	<img src={logo} class="w-full max-w-[10rem]" />
+	<img src={logo} class="w-full max-w-[10rem]" alt="logo" />
 
 	<button
 		class="btn btn-sm btn-primary w-full max-w-sm"

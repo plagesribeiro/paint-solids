@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import '../app.css';
 	import Toast from 'components/Toast.svelte';
 	import Navbar from 'components/Navbar.svelte';
@@ -9,9 +8,6 @@
 	import mixpanel from 'mixpanel-browser';
 
 	mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, { debug: true });
-
-	let corpoContent = 'Conteúdo do corpo';
-	let footerContent = 'Conteúdo do rodapé';
 
 	onMount(async () => {
 		// to load userDoc

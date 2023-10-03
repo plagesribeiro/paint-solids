@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
 	import {
 		faCircleCheck,
 		faCircleXmark,
@@ -10,9 +9,8 @@
 	import TextInput from 'components/TextInput.svelte';
 	import { danger, success } from 'components/Toast.svelte';
 	import { doc, setDoc } from 'firebase/firestore';
-	import { authentication, db } from 'stores/firebase';
+	import { db } from 'stores/firebase';
 	import { userData } from 'stores/user';
-	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';
 
 	let editing = false;
